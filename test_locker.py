@@ -1,28 +1,25 @@
 import unittest
 from locker import User
-class Testuser(unittest.TestCase):
-    '''
-    class testing the User functionality
-    '''
-    print("hello")
+
+class TestUser(unittest.TestCase):
+    """
+        Test class that defines test cases for the user class behaviours.
+    """
+
     def setUp(self):
-        '''
-        create a test for friend credenntials
-        '''
-        self.new_user - User ("Brian","1234@345ghjk")
-        
-    print("hello")
+        self.created_user = User("Brian", "1234@345ghjk")
 
-        
-    def test_initialize(self):
-        self.assertEqual(self.new_user.user_name,"Brian")
-        self.assertEqual(self.new_user.password,"1234@345ghjk")
-           
-    print("hello")
 
-    def test_saving(self):
-        self.new_user.save_user()
-        self.assertEqual(len(User.user_list),1)
+    def tearDown(self):
+        User.user_list = []
+
+
+    def test_init(self):
+        self.assertEqual(self.created_user.name, "Brian")
+        self.assertEqual(self.created_user.password, "1234@345ghjk")
+
+
+  
         
     print("hello")
 if __name__ == "__main__":
