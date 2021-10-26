@@ -1,5 +1,5 @@
 import unittest
-from locker import User
+from locker import User, Credential
 
 class TestUser(unittest.TestCase):
     """
