@@ -1,5 +1,5 @@
 from locker import User, Credential
-
+import getpass
 
 
 def create_user(name, password):
@@ -69,3 +69,46 @@ def display_credentials():
     -------
     """
     return Credential.display_all_credentials()
+
+def main():
+    
+    user_name = input("Enter your name > ")
+    print(f"Hi {user_name}, WELCOME!!!!") 
+    a_member= input(f"{user_name}.Already a member? YES/N0 > ").lower()
+
+    if a_member == "no":
+        print("Wow singnup with us!")
+        user_name = input("Please Enter your preferred username..> ")
+
+        p_generate = input(f"{user_name}. Can we  generate password for you? YES/N0 > ").lower()
+        if p_generate == "no":
+            print("-"*30)
+            print("|Password saved and secure.|")
+            print("-"*30)
+            getpass.getpass()
+            print("PERFECT!! YOU ARE NOW LOGGED IN")
+
+        while True:
+            print("""
+            USE THE SHORT ABBREVIATION
+            cc - to create a new credential
+            dc - to display credential
+            fc - to find credential
+            xx - to delete credential
+            rp - random password
+            """)
+           
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+if __name__ == "__main__":
+     main()
