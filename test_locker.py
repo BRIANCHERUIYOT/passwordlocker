@@ -29,8 +29,21 @@ class TestUser(unittest.TestCase):
 
         self.created_user.delete_user()
         self.assertEqual(len(User.user_list), 1)
+        
+    def test_save_user(self):
+        """
+        test_save_user test case to test if the user object is saved into
+        the user list
+        """
 
+        self.created_user.save_user() # saving the new user
+        self.assertEqual(len(User.user_list), 1)
 
+    def test_save_multiple_user(self):
+        self.created_user.save_user()
+        test_user = User("Amos", "123@#$")
+        test_user.save_user()
+        self.assertEqual(len(User.user_list), 2)
   
         
     print("hello")
