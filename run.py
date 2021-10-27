@@ -1,5 +1,7 @@
 from locker import User, Credential
 import getpass
+import string
+import random
 
 
 def create_user(name, password):
@@ -97,15 +99,87 @@ def main():
             xx - to delete credential
             rp - random password
             """)
-           
+            nav_code = input("Navigate using short codes > ").lower()
+            
+            
+            if nav_code =="cc":
+                print("New Account:")
+                print("-"*22)
+                print("Account:")
+                account=input(">")
+                
+                print("Username ?")
+                acnt_username = input("> ")
+                
+                print("Enter Password")
+                acnt_password = input("> ")
+                
+                save_credential(create_credential(account, acnt_username, acnt_password))
+                
+                print("\n")
+                print("SUCCESS!")
+                print(f"New Credential {account} {acnt_username} {acnt_password} created!")
+                print("\n")
+                
+                
+            elif nav_code == "rp":
+                print(
+                    "Please enter the account you want to generate password for > ")
+                media_acc = input("Enter account type > ")
 
-    
-    
-    
-    
-    
-    
-    
+                def random_password(string_length):
+                    """
+                    Parameters
+                    """
+                    letters = string.ascii_letters
+                    return "".join(random.choice(letters) for i in range(string_length))
+
+                print(
+                    f"Your random password for {media_acc} is: ", random_password(7))
+
+            elif nav_code == "dc":
+
+                if display_credentials():
+                    print("Your Credentials and passwords are")
+                    print("\n")
+                    for credential in display_credentials():
+                        print(f"{credential.account} {credential.acnt_username}{acnt_password}")
+                        print("\n")
+                else:
+                    print("\n")
+                    print(
+                        "You don't have any saved credentials yet. Try saving one")
+                    print("\n")
+
+            elif nav_code == 'fc':
+
+                print("Enter the account username you want to search for")
+
+                search_acnt_username = input()
+                if check_existing_credentials(search_acnt_username):
+                    search_credential = find_credential(search_acnt_username)
+                    print(f"{search_credential.account} {search_credential.acnt_username}")
+                    print('-' * 20)
+
+                    print(f"Account password.......{search_credential.acnt_password}")
+
+                else:
+                    print("That credential does not exist")
+
+            elif nav_code == "xx":
+                print("Enter the username of the credential you would like to delete.")
+                print("Confirm delete")
+                delete_acc = input("> ")
+                my_del = find_credential(delete_acc)
+                Credential.credential_list.remove(my_del)
+                print(
+                    f"Credential with  account username {delete_acc} has been removed succefully")
+            elif nav_code == "ex":
+                print("Logged out")
+                break
+
+    else:
+        print("Kindly check your entries and try again.")
     
     
     
